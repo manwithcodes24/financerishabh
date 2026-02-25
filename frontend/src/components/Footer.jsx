@@ -8,7 +8,7 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const footerLinks = {
   Invest: ["Investment Plans", "Returns Calculator", "Why Trust Us", "Testimonials"],
-  Resources: ["Live Market", "FAQ", "Contact Us", "WhatsApp"],
+  Resources: ["Live Market", "FAQ", "Contact Us", "Telegram"],
   Legal: ["Terms of Service", "Privacy Policy", "Disclaimer", "Risk Warning"],
 };
 
