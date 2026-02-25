@@ -7,10 +7,9 @@ import axios from "axios";
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const footerLinks = {
-  Product: ["Features", "Tokenomics", "Roadmap", "Live Market"],
-  Resources: ["Documentation", "API Reference", "Whitepaper", "Blog"],
-  Community: ["Discord", "Telegram", "Twitter/X", "Reddit"],
-  Legal: ["Terms of Service", "Privacy Policy", "Cookie Policy", "Disclaimer"],
+  Invest: ["Investment Plans", "Returns Calculator", "Why Trust Us", "Testimonials"],
+  Resources: ["Live Market", "FAQ", "Contact Us", "WhatsApp"],
+  Legal: ["Terms of Service", "Privacy Policy", "Disclaimer", "Risk Warning"],
 };
 
 export default function Footer() {
