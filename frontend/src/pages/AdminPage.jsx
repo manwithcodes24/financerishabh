@@ -32,6 +32,10 @@ export default function AdminPage() {
 
   const storedPassword = authenticated ? password : "";
 
+  // Telegram link state
+  const [telegramLink, setTelegramLink] = useState("");
+  const [savingTelegram, setSavingTelegram] = useState(false);
+
   const fetchSchemes = useCallback(async () => {
     setLoading(true);
     try {
