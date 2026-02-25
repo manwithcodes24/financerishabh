@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Pencil, Trash2, LogOut, Save, X, Lock } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Save, X, Lock, Send, Settings } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 
