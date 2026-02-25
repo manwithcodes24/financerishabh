@@ -1,0 +1,108 @@
+{
+  "identity": "E1 - The Anti-AI Designer",
+  "theme": "Dark Futuristic & Electric Glow",
+  "project_type": "Crypto Investment Landing Page & Dashboard",
+  "colors": {
+    "background": {
+      "base": "#030014",
+      "card": "#0F0518",
+      "overlay": "rgba(3, 0, 20, 0.7)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#52525B",
+      "accent": "#E056FD"
+    },
+    "brand": {
+      "primary": "#7F00FF",
+      "secondary": "#E056FD",
+      "accent_cyan": "#00F0FF",
+      "accent_pink": "#FF0080",
+      "success": "#10B981",
+      "danger": "#EF4444"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #7F00FF 0%, #E056FD 100%)",
+      "text_glow": "linear-gradient(to right, #C084FC, #E879F9)",
+      "glass": "linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.0) 100%)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Unbounded, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "weights": {
+      "heading": "800",
+      "subheading": "600",
+      "body": "400"
+    },
+    "import_instruction": "Import 'Unbounded' and 'JetBrains Mono' via Google Fonts in index.css: @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');"
+  },
+  "layout_strategy": {
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "grid_system": "Bento Grid (The 'Tetris' Grid)",
+    "spacing": {
+      "section_gap": "py-24 md:py-32",
+      "element_gap": "gap-8"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-white rounded-full px-8 py-4 font-bold tracking-wide hover:shadow-[0_0_20px_rgba(127,0,255,0.5)] transition-all duration-300 hover:scale-105",
+      "secondary": "bg-transparent border border-white/20 text-white rounded-full px-8 py-4 hover:bg-white/10 transition-all duration-300 backdrop-blur-md",
+      "glow": "relative overflow-hidden group bg-transparent border border-purple-500/50 text-purple-300 shadow-[0_0_15px_rgba(127,0,255,0.3)] hover:shadow-[0_0_30px_rgba(127,0,255,0.6)] rounded-xl"
+    },
+    "cards": {
+      "glass": "bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-purple-500/30 transition-colors duration-300 relative overflow-hidden",
+      "feature": "group relative p-8 rounded-3xl bg-[#0F0518]/50 border border-white/5 hover:border-purple-500/50 transition-all duration-500 overflow-hidden"
+    },
+    "effects": {
+      "text_gradient": "bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600",
+      "neon_border": "shadow-[0_0_10px_#7F00FF,inset_0_0_10px_#7F00FF]",
+      "blur_blob": "absolute -z-10 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px]"
+    }
+  },
+  "assets": {
+    "hero_bg": "https://images.unsplash.com/photo-1758979616631-d425001a1f2d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRhcmslMjBwdXJwbGUlMjBmdXR1cmlzdGljJTIwM2QlMjBzaGFwZXN8ZW58MHx8fHwxNzcyMDIyMzYyfDA&ixlib=rb-4.1.0&q=85",
+    "token_icon": "https://images.unsplash.com/photo-1679967490498-0c51067ca018?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwyfHwzZCUyMGZ1dHVyaXN0aWMlMjBjcnlwdG8lMjBjb2luJTIwcHVycGxlJTIwZ2xvd3xlbnwwfHx8fDE3NzIwMjIzNjN8MA&ixlib=rb-4.1.0&q=85",
+    "global_bg": "https://images.unsplash.com/photo-1618894323379-2c2bece901bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHw0fHxjeWJlcnB1bmslMjBjaXR5JTIwbmlnaHQlMjBwdXJwbGUlMjBmdXR1cmlzdGljfGVufDB8fHx8MTc3MjAyMjM2NHww&ixlib=rb-4.1.0&q=85"
+  },
+  "data_integration": {
+    "provider": "CoinGecko API",
+    "endpoint_example": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=true",
+    "guidelines": "Use 'axios' to fetch data. Display: Rank, Name, Price, 24h Change (Green/Red), Market Cap, and a mini Sparkline chart using Recharts."
+  },
+  "libraries": {
+    "required": [
+      "framer-motion",
+      "recharts",
+      "lucide-react",
+      "axios",
+      "clsx",
+      "tailwind-merge"
+    ],
+    "installation_command": "yarn add framer-motion recharts lucide-react axios clsx tailwind-merge"
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALLATION: Run 'yarn add framer-motion recharts lucide-react axios' immediately.",
+    "2. SETUP: Add the Google Fonts import to 'src/index.css'. Set 'body' background to #030014 and text to white.",
+    "3. NAVBAR: Create a sticky glassmorphism navbar. Links: Home, Features, Roadmap, Live Market (Link to /market).",
+    "4. HERO: Use 'hero_bg' as a background image with a heavy black gradient overlay (to ensure text readability). Center the H1 'The Future of Decentralized Wealth' in 'Unbounded' font.",
+    "5. FEATURES: Use a Bento Grid layout. Create a component <FeatureCard /> that tilts on hover (framer-motion).",
+    "6. LIVE MARKET PAGE: Create a route '/market'. Fetch data from CoinGecko. Use a high-density table layout. Columns: Coin, Price, 24h %, Mkt Cap. Sparkline chart for last 7 days.",
+    "7. ANIMATIONS: Every section must stagger-fade in. Buttons must glow on hover.",
+    "8. THEME: ENFORCE DARK MODE. Do not create a light mode switch. This is crypto.",
+    "9. TOASTS: Use 'sonner' for any notifications (e.g. 'Invest' button click)."
+  ],
+  "universal_guidelines": [
+    "NEVER use generic 'blue' for links. Use the brand cyan or pink.",
+    "NEVER use 'Inter' for Headings. Use 'Unbounded'.",
+    "ALWAYS add internal padding to bordered containers.",
+    "ALWAYS set 'data-testid' on interactive elements.",
+    "Use 'backdrop-blur-xl' for all glass elements.",
+    "Ensure 24h Price Change colors are distinct: Green (#10B981) for positive, Red (#EF4444) for negative."
+  ]
+}
