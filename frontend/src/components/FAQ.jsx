@@ -8,28 +8,28 @@ import {
 
 const faqs = [
   {
-    q: "What is NovaX and how does it work?",
-    a: "NovaX is a next-generation decentralized investment platform that enables secure, transparent, and permissionless trading across 50+ blockchain networks. Our protocol uses advanced smart contracts to ensure trustless execution of all transactions.",
+    q: "How does WealthX work?",
+    a: "You invest a minimum amount starting from Rs.5,000. I manage your crypto portfolio using proven trading strategies across multiple exchanges. At the end of each month, you receive your investment + 40% returns directly in your account.",
   },
   {
-    q: "How do I start investing on NovaX?",
-    a: "Getting started is simple. Connect your preferred Web3 wallet (MetaMask, WalletConnect, etc.), fund your account, and begin trading. Our platform supports both spot trading and DeFi yield opportunities.",
+    q: "How do I start investing?",
+    a: "Simply contact me on WhatsApp at +91 7080682448. I'll explain the process, you transfer the investment amount, and I start managing your portfolio immediately. It's that simple.",
   },
   {
-    q: "Is my investment secure?",
-    a: "Security is our top priority. NovaX implements bank-grade encryption, multi-signature wallets, and has undergone multiple security audits by leading firms. All smart contracts are open-source and verifiable on-chain.",
+    q: "Is my money safe?",
+    a: "Absolutely. Your money is invested through verified crypto exchanges with top-tier security. I provide complete transparency with regular portfolio updates. Over 500 investors trust me with their money.",
   },
   {
-    q: "What are the fees?",
-    a: "NovaX offers competitive fee structures starting at 0.1% per trade. Holding NVX tokens provides fee discounts up to 50%. There are no hidden fees, deposit charges, or withdrawal penalties.",
+    q: "What is the minimum investment?",
+    a: "The minimum investment starts from Rs.5,000. You can invest any amount above that. Higher investments are managed with dedicated attention and priority support.",
   },
   {
-    q: "How does staking work?",
-    a: "Stake your NVX tokens to earn passive rewards. Our flexible staking program offers APY rates from 8% to 25% depending on the lock period. Rewards are distributed daily and can be compounded automatically.",
+    q: "How and when do I get my returns?",
+    a: "Returns are paid out monthly. After the minimum 1-month period, you receive your original investment plus 40% returns. Payouts are made directly to your bank account or UPI.",
   },
   {
-    q: "What chains does NovaX support?",
-    a: "NovaX supports Ethereum, Solana, Polygon, Arbitrum, Optimism, Avalanche, BNB Chain, and 40+ additional networks. Our cross-chain bridge enables seamless asset transfers between supported chains.",
+    q: "Can I withdraw my money anytime?",
+    a: "Yes, after the minimum 1-month lock-in period, you can withdraw your investment along with returns. Just inform me 2-3 days in advance for processing.",
   },
 ];
 
