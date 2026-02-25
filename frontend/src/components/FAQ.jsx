@@ -53,7 +53,7 @@ export default function FAQ() {
             Got <span className="text-gradient-cyan">Questions?</span>
           </h2>
           <p className="text-base md:text-lg text-[#A1A1AA] max-w-xl mx-auto">
-            Everything you need to know about NovaX.
+            Everything you need to know about investing with WealthX.
           </p>
         </motion.div>
 
