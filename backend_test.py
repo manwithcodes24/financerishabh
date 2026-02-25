@@ -363,6 +363,9 @@ def main():
     # Run all tests
     tests = [
         tester.test_root_endpoint,
+        tester.test_schemes_endpoint,
+        tester.test_admin_login,
+        tester.test_admin_schemes_crud,
         tester.test_top_coins_endpoint,
         tester.test_trending_endpoint,
         tester.test_global_stats_endpoint,
