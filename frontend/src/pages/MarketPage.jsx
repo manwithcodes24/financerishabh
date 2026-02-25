@@ -32,7 +32,7 @@ function formatPrice(price) {
 }
 
 function MiniSparkline({ data, isPositive }) {
-  if (!data || data.length === 0) return null;
+  if (!data || !Array.isArray(data) || data.length === 0) return null;
   const sampled = data.filter((_, i) => i % Math.ceil(data.length / 30) === 0);
   const chartData = sampled.map((v, i) => ({ i, v }));
 
