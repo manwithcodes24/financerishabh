@@ -81,11 +81,11 @@ export default function Navbar() {
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-4">
             <Link
-              to="/market"
+              to="/#schemes"
               data-testid="nav-cta-button"
               className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#7F00FF] to-[#E056FD] hover:shadow-[0_0_25px_rgba(127,0,255,0.5)] transition-all duration-300 hover:scale-105"
             >
-              Explore Market
+              Start Investing
             </Link>
             <button
               data-testid="mobile-menu-toggle"
