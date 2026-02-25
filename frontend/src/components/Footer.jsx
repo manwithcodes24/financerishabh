@@ -117,10 +117,10 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/[0.04] pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#52525B]">
-            &copy; 2025 NovaX Protocol. All rights reserved.
+            &copy; 2025 WealthX Investments. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="text-xs text-[#52525B]">Built on Ethereum</span>
+            <span className="text-xs text-[#52525B]">Contact: +91 7080682448</span>
             <div className="flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
               <span className="text-xs text-[#10B981] font-['JetBrains_Mono']">All systems operational</span>
