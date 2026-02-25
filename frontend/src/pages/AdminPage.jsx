@@ -142,6 +142,24 @@ export default function AdminPage() {
     }
   };
 
+  const handleSaveTelegram = async () => {
+    if (!telegramLink.trim()) {
+      toast.error("Please enter a valid Telegram link");
+      return;
+    }
+    setSavingTelegram(true);
+    try {
+      await axios.put(`${API}/admin/settings`, { telegram_link: telegramLink }, {
+        headers: { "x-admin-password": storedPassword },
+      });
+      toast.success("Telegram link updated!");
+    } catch {
+      toast.error("Failed to update Telegram link");
+    } finally {
+      setSavingTelegram(false);
+    }
+  };
+
   // LOGIN SCREEN
   if (!authenticated) {
     return (
