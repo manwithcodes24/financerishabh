@@ -354,6 +354,112 @@ class CryptoAPITester:
         
         return success_create and success_update and success_delete
 
+    def test_team_endpoint(self):
+        """Test team members endpoint"""
+        success, response = self.run_test(
+            "Get Team Members",
+            "GET",
+            "team",
+            200,
+            expected_fields=["team"]
+        )
+        
+        if success and response:
+            team = response.get("team", [])
+            print(f"👥 Found {len(team)} team members")
+            
+            expected_members = ["Ankur Agrawal", "Radhika Gupta", "Abhay Sharma", "Rishabh Singh"]
+            if len(team) >= 4:
+                print(f"✅ Expected at least 4 team members, found {len(team)}")
+                
+                # Check if expected members are present
+                found_members = [member.get("name", "") for member in team]
+                for expected_member in expected_members:
+                    if expected_member in found_members:
+                        print(f"✅ Found expected team member: {expected_member}")
+                    else:
+                        print(f"⚠️  Missing expected team member: {expected_member}")
+                
+                # Validate team member structure
+                if team:
+                    first_member = team[0]
+                    required_fields = ["name", "role", "initials"]
+                    for field in required_fields:
+                        if field not in first_member:
+                            print(f"⚠️  Missing field '{field}' in team member structure")
+                        else:
+                            print(f"✅ Team member field '{field}': {first_member[field]}")
+            else:
+                print(f"⚠️  Expected 4 team members, found {len(team)}")
+        
+        return success
+
+    def test_settings_endpoints(self):
+        """Test settings GET and PUT endpoints"""
+        admin_password = "Newral@123"
+        
+        # Test GET settings
+        success_get, response = self.run_test(
+            "Get Settings",
+            "GET",
+            "settings",
+            200,
+            expected_fields=["telegram_link"]
+        )
+        
+        if success_get and response:
+            telegram_link = response.get("telegram_link", "")
+            print(f"📱 Current Telegram link: {telegram_link}")
+            if telegram_link:
+                print(f"✅ Telegram link is configured")
+            else:
+                print(f"⚠️  Telegram link is empty")
+        
+        # Test PUT settings (update Telegram link)
+        test_telegram_link = "https://t.me/test_wealthx_invest"
+        update_data = {
+            "telegram_link": test_telegram_link
+        }
+        
+        url = f"{self.base_url}/admin/settings"
+        headers = {
+            'Content-Type': 'application/json',
+            'x-admin-password': admin_password
+        }
+        
+        success_put = False
+        try:
+            response = requests.put(url, json=update_data, headers=headers, timeout=30)
+            if response.status_code == 200:
+                success_put = True
+                self.tests_passed += 1
+                print(f"✅ Update Settings - Status: {response.status_code}")
+                
+                # Verify the update by getting settings again
+                success_verify, verify_response = self.run_test(
+                    "Verify Settings Update",
+                    "GET",
+                    "settings",
+                    200,
+                    expected_fields=["telegram_link"]
+                )
+                
+                if success_verify and verify_response:
+                    updated_link = verify_response.get("telegram_link", "")
+                    if updated_link == test_telegram_link:
+                        print(f"✅ Telegram link successfully updated to: {updated_link}")
+                    else:
+                        print(f"⚠️  Expected '{test_telegram_link}', got '{updated_link}'")
+            else:
+                print(f"❌ Update Settings - Expected 200, got {response.status_code}")
+                print(f"Response: {response.text}")
+        except Exception as e:
+            print(f"❌ Update Settings - Error: {str(e)}")
+        
+        self.tests_run += 2  # GET and PUT
+        
+        return success_get and success_put
+
 def main():
     print("🚀 Starting Crypto Investment Platform API Tests")
     print("=" * 60)
