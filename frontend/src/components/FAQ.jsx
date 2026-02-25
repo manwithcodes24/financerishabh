@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "How do I start investing?",
-    a: "Simply contact me on WhatsApp at +91 7080682448. I'll explain the process, you transfer the investment amount, and I start managing your portfolio immediately. It's that simple.",
+    a: "Simply contact us on Telegram (link available on the website). We'll explain the process, you transfer the investment amount, and we start managing your portfolio immediately. It's that simple.",
   },
   {
     q: "Is my money safe?",
