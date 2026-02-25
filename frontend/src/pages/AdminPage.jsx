@@ -49,7 +49,13 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    if (authenticated) fetchSchemes();
+    if (authenticated) {
+      fetchSchemes();
+      // Fetch telegram link
+      axios.get(`${API}/settings`).then(res => {
+        if (res.data.telegram_link) setTelegramLink(res.data.telegram_link);
+      }).catch(() => {});
+    }
   }, [authenticated, fetchSchemes]);
 
   const handleLogin = async (e) => {
