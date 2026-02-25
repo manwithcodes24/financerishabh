@@ -1,8 +1,10 @@
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import Tokenomics from "@/components/Tokenomics";
-import Roadmap from "@/components/Roadmap";
+import InvestmentExamples from "@/components/InvestmentExamples";
+import Schemes from "@/components/Schemes";
+import WhyTrustUs from "@/components/WhyTrustUs";
+import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CryptoTicker from "@/components/CryptoTicker";
 
@@ -11,10 +13,12 @@ export default function LandingPage() {
     <main data-testid="landing-page">
       <Hero />
       <CryptoTicker />
-      <Features />
-      <Tokenomics />
-      <Roadmap />
+      <InvestmentExamples />
+      <Schemes />
+      <WhyTrustUs />
+      <Testimonials />
       <FAQ />
+      <Contact />
       <Footer />
     </main>
   );
