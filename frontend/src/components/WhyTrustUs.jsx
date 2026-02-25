@@ -29,7 +29,7 @@ const reasons = [
   {
     icon: HeadphonesIcon,
     title: "Personal Support",
-    description: "Direct WhatsApp support. Get portfolio updates, ask questions, and track your investment anytime. No bots, real human assistance.",
+    description: "Direct Telegram support. Get portfolio updates, ask questions, and track your investment anytime. No bots, real human assistance.",
     accent: "#FF0080",
   },
   {
