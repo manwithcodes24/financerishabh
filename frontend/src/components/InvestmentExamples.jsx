@@ -1,5 +1,9 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, ArrowRight } from "lucide-react";
+import axios from "axios";
+
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const examples = [
   { invest: 5000, returns: 7000, label: "5K" },
