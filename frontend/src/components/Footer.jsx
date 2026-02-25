@@ -86,11 +86,11 @@ export default function Footer() {
                 <Zap className="w-4 h-4 text-white" />
               </div>
               <span className="font-['Unbounded'] font-bold text-base text-white">
-                Nova<span className="text-[#E056FD]">X</span>
+                Wealth<span className="text-[#E056FD]">X</span>
               </span>
             </div>
             <p className="text-xs text-[#52525B] leading-relaxed">
-              The future of decentralized wealth. Built for traders, by traders.
+              Professional crypto portfolio management. Invest with confidence, earn up to 40% monthly returns.
             </p>
           </div>
 
