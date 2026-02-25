@@ -197,6 +197,163 @@ class CryptoAPITester:
         
         return success and success_dup
 
+    def test_schemes_endpoint(self):
+        """Test schemes retrieval endpoint"""
+        success, response = self.run_test(
+            "Get Schemes",
+            "GET",
+            "schemes",
+            200,
+            expected_fields=["schemes"]
+        )
+        
+        if success and response:
+            schemes = response.get("schemes", [])
+            print(f"💰 Found {len(schemes)} active schemes")
+            if len(schemes) >= 4:
+                print(f"✅ Expected at least 4 default schemes, found {len(schemes)}")
+            else:
+                print(f"⚠️  Expected at least 4 schemes, found {len(schemes)}")
+                
+            # Validate scheme structure
+            if schemes:
+                first_scheme = schemes[0]
+                required_fields = ["id", "title", "min_investment", "max_investment", 
+                                 "return_percentage", "duration_months", "description", 
+                                 "is_popular", "is_active"]
+                for field in required_fields:
+                    if field not in first_scheme:
+                        print(f"⚠️  Missing field '{field}' in scheme structure")
+                    else:
+                        print(f"✅ Scheme field '{field}': {first_scheme[field]}")
+        
+        return success
+
+    def test_admin_login(self):
+        """Test admin login endpoint"""
+        # Test correct password
+        success, response = self.run_test(
+            "Admin Login (Correct Password)",
+            "POST",
+            "admin/login",
+            200,
+            data={"password": "Newral@123"},
+            expected_fields=["message", "authenticated"]
+        )
+        
+        if success and response:
+            authenticated = response.get("authenticated", False)
+            if authenticated:
+                print(f"✅ Admin login successful")
+            else:
+                print(f"⚠️  Login response shows not authenticated")
+        
+        # Test incorrect password
+        success_wrong, _ = self.run_test(
+            "Admin Login (Wrong Password)",
+            "POST",
+            "admin/login",
+            401,
+            data={"password": "wrongpassword"}
+        )
+        
+        return success and success_wrong
+
+    def test_admin_schemes_crud(self):
+        """Test admin CRUD operations for schemes"""
+        admin_password = "Newral@123"
+        
+        # Test creating a new scheme
+        new_scheme_data = {
+            "title": "Test Plan",
+            "min_investment": 1000,
+            "max_investment": 5000,
+            "return_percentage": 40.0,
+            "duration_months": 1,
+            "description": "Test scheme for API testing",
+            "is_popular": False,
+            "is_active": True
+        }
+        
+        success_create, create_response = self.run_test(
+            "Admin Create Scheme",
+            "POST",
+            "admin/schemes",
+            200,
+            data=new_scheme_data
+        )
+        
+        if not success_create:
+            # Try with header
+            url = f"{self.base_url}/admin/schemes"
+            headers = {
+                'Content-Type': 'application/json',
+                'x-admin-password': admin_password
+            }
+            
+            try:
+                response = requests.post(url, json=new_scheme_data, headers=headers, timeout=30)
+                if response.status_code == 200:
+                    create_response = response.json()
+                    success_create = True
+                    self.tests_passed += 1
+                    print(f"✅ Admin Create Scheme - Status: {response.status_code}")
+                else:
+                    print(f"❌ Admin Create Scheme - Expected 200, got {response.status_code}")
+                    print(f"Response: {response.text}")
+                    return False
+            except Exception as e:
+                print(f"❌ Admin Create Scheme - Error: {str(e)}")
+                return False
+        
+        scheme_id = create_response.get("id") if create_response else None
+        if not scheme_id:
+            print(f"⚠️  No scheme ID returned from create operation")
+            return False
+        
+        print(f"✅ Created scheme with ID: {scheme_id}")
+        
+        # Test updating the scheme
+        update_data = {
+            "title": "Updated Test Plan",
+            "description": "Updated test scheme description"
+        }
+        
+        url = f"{self.base_url}/admin/schemes/{scheme_id}"
+        headers = {
+            'Content-Type': 'application/json',
+            'x-admin-password': admin_password
+        }
+        
+        try:
+            response = requests.put(url, json=update_data, headers=headers, timeout=30)
+            success_update = response.status_code == 200
+            if success_update:
+                self.tests_passed += 1
+                print(f"✅ Admin Update Scheme - Status: {response.status_code}")
+            else:
+                print(f"❌ Admin Update Scheme - Expected 200, got {response.status_code}")
+        except Exception as e:
+            print(f"❌ Admin Update Scheme - Error: {str(e)}")
+            success_update = False
+        
+        # Test deleting the scheme
+        try:
+            response = requests.delete(url, headers=headers, timeout=30)
+            success_delete = response.status_code == 200
+            if success_delete:
+                self.tests_passed += 1
+                print(f"✅ Admin Delete Scheme - Status: {response.status_code}")
+            else:
+                print(f"❌ Admin Delete Scheme - Expected 200, got {response.status_code}")
+        except Exception as e:
+            print(f"❌ Admin Delete Scheme - Error: {str(e)}")
+            success_delete = False
+        
+        self.tests_run += 3  # Create, Update, Delete
+        
+        return success_create and success_update and success_delete
+
 def main():
     print("🚀 Starting Crypto Investment Platform API Tests")
     print("=" * 60)
