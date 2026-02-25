@@ -21,6 +21,14 @@ function formatINR(num) {
 }
 
 export default function InvestmentExamples() {
+  const [telegramLink, setTelegramLink] = useState("https://t.me/wealthx_invest");
+
+  useEffect(() => {
+    axios.get(`${API}/settings`).then(res => {
+      if (res.data.telegram_link) setTelegramLink(res.data.telegram_link);
+    }).catch(() => {});
+  }, []);
+
   return (
     <section id="returns" data-testid="investment-examples-section" className="relative py-24 md:py-32">
       <div className="blur-blob w-[500px] h-[500px] bg-[#10B981]/10 top-0 right-1/4" />
