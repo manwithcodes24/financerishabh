@@ -1,7 +1,20 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
+import { Send } from "lucide-react";
+import axios from "axios";
+
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Hero() {
+  const [telegramLink, setTelegramLink] = useState("https://t.me/wealthx_invest");
+
+  useEffect(() => {
+    axios.get(`${API}/settings`).then(res => {
+      if (res.data.telegram_link) setTelegramLink(res.data.telegram_link);
+    }).catch(() => {});
+  }, []);
+
   return (
     <section
       data-testid="hero-section"
@@ -89,14 +102,14 @@ export default function Hero() {
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="https://wa.me/917080682448"
+            href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            data-testid="hero-cta-whatsapp"
+            data-testid="hero-cta-telegram"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 backdrop-blur-md transition-all duration-300"
           >
-            <Phone className="w-5 h-5" />
-            Contact on WhatsApp
+            <Send className="w-5 h-5" />
+            Contact on Telegram
           </a>
         </motion.div>
 
