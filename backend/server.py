@@ -247,6 +247,35 @@ async def delete_scheme(scheme_id: str, x_admin_password: str = Header(None)):
     return {"message": "Scheme deleted"}
 
 
+# --- Settings ---
+@api_router.get("/settings")
+async def get_settings():
+    settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if not settings:
+        return DEFAULT_SETTINGS
+    return settings
+
+
+class SettingsUpdate(BaseModel):
+    telegram_link: Optional[str] = None
+
+@api_router.put("/admin/settings")
+async def update_settings(data: SettingsUpdate, x_admin_password: str = Header(None)):
+    verify_admin(x_admin_password)
+    update_data = {k: v for k, v in data.model_dump().items() if v is not None}
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No fields to update")
+    update_data["updated_at"] = datetime.now(timezone.utc).isoformat()
+    await db.settings.update_one({"id": "site_settings"}, {"$set": update_data}, upsert=True)
+    return {"message": "Settings updated"}
+
+
+# --- Team ---
+@api_router.get("/team")
+async def get_team():
+    return {"team": TEAM_MEMBERS}
+
+
 # --- Crypto APIs ---
 @api_router.get("/")
 async def root():
