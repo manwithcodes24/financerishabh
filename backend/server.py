@@ -199,8 +199,14 @@ async def get_global_stats():
 class NewsletterSubscribe(BaseModel):
     email: str
 
+def is_valid_email(email: str) -> bool:
+    import re
+    return bool(re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email))
+
 @api_router.post("/newsletter/subscribe")
 async def subscribe_newsletter(data: NewsletterSubscribe):
+    if not is_valid_email(data.email):
+        raise HTTPException(status_code=422, detail="Invalid email address")
     existing = await db.newsletter.find_one({"email": data.email}, {"_id": 0})
     if existing:
         return {"message": "Already subscribed", "status": "exists"}
