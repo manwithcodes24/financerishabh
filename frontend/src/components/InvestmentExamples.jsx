@@ -115,7 +115,7 @@ export default function InvestmentExamples() {
           className="text-center mt-10"
         >
           <a
-            href="https://wa.me/917080682448?text=Hi%2C%20I%20am%20interested%20in%20investing.%20Can%20you%20share%20more%20details%3F"
+            href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
             data-testid="investment-cta"
