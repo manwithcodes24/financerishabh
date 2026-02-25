@@ -55,7 +55,7 @@ export default function Navbar() {
               <Zap className="w-5 h-5 text-white" />
             </div>
             <span className="font-['Unbounded'] font-bold text-lg text-white tracking-tight">
-              Nova<span className="text-[#E056FD]">X</span>
+              Wealth<span className="text-[#E056FD]">X</span>
             </span>
           </Link>
 
