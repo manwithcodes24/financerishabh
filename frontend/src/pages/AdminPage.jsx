@@ -365,6 +365,41 @@ export default function AdminPage() {
           )}
         </AnimatePresence>
 
+        {/* Telegram Link Settings */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8 p-5 rounded-2xl bg-[#0F0518]/60 border border-cyan-500/20 backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Settings className="w-5 h-5 text-[#00F0FF]" />
+            <h2 className="font-['Unbounded'] font-semibold text-base text-white">Telegram Settings</h2>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1 relative">
+              <Send className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#52525B]" />
+              <input
+                type="text"
+                value={telegramLink}
+                onChange={(e) => setTelegramLink(e.target.value)}
+                placeholder="https://t.me/your_channel"
+                data-testid="admin-telegram-input"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-[#52525B] focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+              />
+            </div>
+            <button
+              onClick={handleSaveTelegram}
+              disabled={savingTelegram}
+              data-testid="admin-save-telegram-button"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#00F0FF] to-[#7F00FF] hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all disabled:opacity-50"
+            >
+              <Save className="w-4 h-4" />
+              {savingTelegram ? "Saving..." : "Save Link"}
+            </button>
+          </div>
+          <p className="text-xs text-[#52525B] mt-2">This link will appear on all "Contact on Telegram" and "Invest Now" buttons across the site.</p>
+        </motion.div>
+
         {/* Schemes List */}
         {loading ? (
           <div className="text-center text-[#A1A1AA] py-12">Loading schemes...</div>
