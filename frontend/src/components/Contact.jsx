@@ -1,7 +1,19 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Send, Phone, MapPin, Clock } from "lucide-react";
+import axios from "axios";
+
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Contact() {
+  const [telegramLink, setTelegramLink] = useState("https://t.me/wealthx_invest");
+
+  useEffect(() => {
+    axios.get(`${API}/settings`).then(res => {
+      if (res.data.telegram_link) setTelegramLink(res.data.telegram_link);
+    }).catch(() => {});
+  }, []);
+
   return (
     <section id="contact" data-testid="contact-section" className="relative py-24 md:py-32">
       <div className="blur-blob w-[400px] h-[400px] bg-purple-600/15 top-1/3 right-0" />
@@ -22,29 +34,29 @@ export default function Contact() {
             <span className="text-gradient">Invest?</span>
           </h2>
           <p className="text-base md:text-lg text-[#A1A1AA] max-w-xl mx-auto">
-            Contact me directly on WhatsApp to get started. I'll guide you through the entire process.
+            Contact us directly on Telegram to get started. We'll guide you through the entire process.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* WhatsApp Card */}
+          {/* Telegram Card */}
           <motion.a
-            href="https://wa.me/917080682448?text=Hi%2C%20I%20am%20interested%20in%20crypto%20investment.%20Can%20you%20share%20more%20details%3F"
+            href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            data-testid="contact-whatsapp"
-            className="group p-8 rounded-2xl bg-[#0F0518]/60 border border-emerald-500/20 hover:border-emerald-500/40 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] transition-all duration-500 backdrop-blur-sm cursor-pointer"
+            data-testid="contact-telegram"
+            className="group p-8 rounded-2xl bg-[#0F0518]/60 border border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all duration-500 backdrop-blur-sm cursor-pointer"
           >
-            <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-              <MessageCircle className="w-7 h-7 text-[#10B981]" />
+            <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+              <Send className="w-7 h-7 text-[#00F0FF]" />
             </div>
-            <h3 className="font-['Unbounded'] font-semibold text-xl text-white mb-2">WhatsApp</h3>
-            <p className="text-[#A1A1AA] text-sm mb-3">Message me directly for quick response</p>
-            <span className="font-['JetBrains_Mono'] text-lg text-[#10B981] font-bold">+91 7080682448</span>
+            <h3 className="font-['Unbounded'] font-semibold text-xl text-white mb-2">Telegram</h3>
+            <p className="text-[#A1A1AA] text-sm mb-3">Message us directly for quick response</p>
+            <span className="font-['JetBrains_Mono'] text-base text-[#00F0FF] font-bold">Connect on Telegram</span>
           </motion.a>
 
           {/* Phone Card */}
