@@ -120,11 +120,11 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                to="/market"
+                to="/#schemes"
                 data-testid="mobile-nav-cta"
                 className="block w-full text-center px-5 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#7F00FF] to-[#E056FD] mt-2"
               >
-                Explore Market
+                Start Investing
               </Link>
             </div>
           </motion.div>
