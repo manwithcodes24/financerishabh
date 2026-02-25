@@ -470,6 +470,8 @@ def main():
     tests = [
         tester.test_root_endpoint,
         tester.test_schemes_endpoint,
+        tester.test_team_endpoint,
+        tester.test_settings_endpoints,
         tester.test_admin_login,
         tester.test_admin_schemes_crud,
         tester.test_top_coins_endpoint,
