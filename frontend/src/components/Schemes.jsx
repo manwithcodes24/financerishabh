@@ -15,19 +15,24 @@ function formatINR(num) {
 export default function Schemes() {
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [telegramLink, setTelegramLink] = useState("https://t.me/wealthx_invest");
 
   useEffect(() => {
-    const fetchSchemes = async () => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get(`${API}/schemes`);
-        setSchemes(res.data.schemes || []);
+        const [schemesRes, settingsRes] = await Promise.all([
+          axios.get(`${API}/schemes`),
+          axios.get(`${API}/settings`),
+        ]);
+        setSchemes(schemesRes.data.schemes || []);
+        if (settingsRes.data.telegram_link) setTelegramLink(settingsRes.data.telegram_link);
       } catch (err) {
-        console.error("Failed to fetch schemes:", err);
+        console.error("Failed to fetch:", err);
       } finally {
         setLoading(false);
       }
     };
-    fetchSchemes();
+    fetchData();
   }, []);
 
   if (loading) {
@@ -123,7 +128,7 @@ export default function Schemes() {
               <p className="text-xs text-[#52525B] mb-5 leading-relaxed">{scheme.description}</p>
 
               <a
-                href={`https://wa.me/917080682448?text=Hi%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(scheme.title)}%20plan.`}
+                href={telegramLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid={`scheme-cta-${i}`}
