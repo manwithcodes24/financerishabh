@@ -107,11 +107,29 @@ DEFAULT_SCHEMES = [
 ]
 
 
+DEFAULT_SETTINGS = {
+    "id": "site_settings",
+    "telegram_link": "https://t.me/wealthx_invest",
+    "updated_at": datetime.now(timezone.utc).isoformat(),
+}
+
+TEAM_MEMBERS = [
+    {"name": "Ankur Agrawal", "role": "Founder & Lead Portfolio Manager", "initials": "AA"},
+    {"name": "Radhika Gupta", "role": "Senior Investment Analyst", "initials": "RG"},
+    {"name": "Abhay Sharma", "role": "Risk Management Head", "initials": "AS"},
+    {"name": "Rishabh Singh", "role": "Client Relations Manager", "initials": "RS"},
+]
+
+
 async def seed_schemes():
     count = await db.schemes.count_documents({})
     if count == 0:
         await db.schemes.insert_many(DEFAULT_SCHEMES)
         logging.info("Seeded default schemes")
+    settings = await db.settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if not settings:
+        await db.settings.insert_one(DEFAULT_SETTINGS)
+        logging.info("Seeded default settings")
 
 
 @app.on_event("startup")
