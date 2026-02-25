@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import InvestmentExamples from "@/components/InvestmentExamples";
 import Schemes from "@/components/Schemes";
 import WhyTrustUs from "@/components/WhyTrustUs";
+import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -16,6 +17,7 @@ export default function LandingPage() {
       <InvestmentExamples />
       <Schemes />
       <WhyTrustUs />
+      <Team />
       <Testimonials />
       <FAQ />
       <Contact />
